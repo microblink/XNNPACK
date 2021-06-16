@@ -40,7 +40,7 @@ void xnn_f32_vsqr_ukernel__wasmsimd_x4(
     const v128_t vx = wasm_v128_load(x);
     v128_t vy = wasm_f32x4_mul(vx, vx);
     if (n & (2 * sizeof(float))) {
-      *((double*) y) = wasm_f64x2_extract_lane(vy, 0);
+      *((double*) y) = wasm_f32x4_extract_lane(vy, 0);
       vy = wasm_v32x4_shuffle(vy, vy, 2, 3, 2, 3);
       y += 2;
     }

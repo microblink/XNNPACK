@@ -674,7 +674,7 @@ void xnn_f32_dwconv_minmax_ukernel_up8x25__wasmsimd_arm(
       vacc0123 = wasm_f32x4_min(vacc0123, vmax);
 
       if (c & 2) {
-        *((double*) output) = wasm_f64x2_extract_lane(vacc0123, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vacc0123, 0);
         vacc0123 = wasm_v32x4_shuffle(vacc0123, vacc0123, 2, 3, 2, 3);
         output += 2;
       }

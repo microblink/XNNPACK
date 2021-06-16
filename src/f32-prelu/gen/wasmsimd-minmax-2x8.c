@@ -117,8 +117,8 @@ void xnn_f32_prelu_ukernel__wasmsimd_minmax_2x8(
       vacc1x0123 = wasm_f32x4_add(vacc1x0123, wasm_f32x4_mul(vi1x0123, vw0123));
 
       if (c & (2 * sizeof(float))) {
-        *((double*) o0) = wasm_f64x2_extract_lane(vacc0x0123, 0);
-        *((double*) o1) = wasm_f64x2_extract_lane(vacc1x0123, 0);
+        *((double*) o0) = wasm_f32x4_extract_lane(vacc0x0123, 0);
+        *((double*) o1) = wasm_f32x4_extract_lane(vacc1x0123, 0);
 
         vacc0x0123 = wasm_v32x4_shuffle(vacc0x0123, vacc0x0123, 2, 3, 2, 3);
         vacc1x0123 = wasm_v32x4_shuffle(vacc1x0123, vacc1x0123, 2, 3, 2, 3);

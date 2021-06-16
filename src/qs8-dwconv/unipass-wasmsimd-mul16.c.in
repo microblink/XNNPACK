@@ -103,7 +103,7 @@ void xnn_qs8_dwconv_minmax_gemmlowp_ukernel_up${CHANNEL_TILE}x${KERNEL_TILE}__wa
       $if CHANNEL_TILE > 8:
         wasm_v128_store(output, vout${ABC[0:16]});
       $else:
-        *((double*) output) = wasm_f64x2_extract_lane(vout${ABC[0:8]}${ABC[0:8]}, 0);
+         *((float*) output) = wasm_f64x2_extract_lane(vout${ABC[0:8]}${ABC[0:8]}, 0);
       $for C in range(16, CHANNEL_TILE, 16):
         $if C + 8 < CHANNEL_TILE:
           wasm_v128_store(output + ${C}, vout${ABC[C:C+16]});
@@ -176,7 +176,7 @@ void xnn_qs8_dwconv_minmax_gemmlowp_ukernel_up${CHANNEL_TILE}x${KERNEL_TILE}__wa
 
       $if CHANNEL_TILE > 8:
         if XNN_LIKELY(c >= 8) {
-          *((double*) output) = wasm_f64x2_extract_lane(vout${ABC[0:8]}${ABC[0:8]}, 0);
+           *((float*) output) = wasm_f64x2_extract_lane(vout${ABC[0:8]}${ABC[0:8]}, 0);
           output += 8;
           c -= 8;
         } else {

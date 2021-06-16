@@ -97,7 +97,7 @@ void xnn_qs8_vadd_minmax_ukernel__wasmsimd_x16(
       vout0123456701234567 = wasm_i8x16_min(vout0123456701234567, voutput_max);
 
       if XNN_LIKELY(n >= (8 * sizeof(int8_t))) {
-        *((double*) output) = wasm_f64x2_extract_lane(vout0123456701234567, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vout0123456701234567, 0);
         output += 8;
         n -= 8 * sizeof(int8_t);
       } else {

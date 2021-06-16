@@ -75,7 +75,7 @@ void xnn_f32_vrndd_ukernel__wasmsimd_addsub_x8(
     v128_t vy = wasm_f32x4_sub(vrndx, wasm_v128_and(wasm_f32x4_lt(vx, vrndx), vone));
 
     if (n & (2 * sizeof(float))) {
-      *((double*) y) = wasm_f64x2_extract_lane(vy, 0);
+      *((double*) y) = wasm_f32x4_extract_lane(vy, 0);
       vy = wasm_v32x4_shuffle(vy, vy, 2, 3, 2, 3);
       y += 2;
     }

@@ -42,7 +42,7 @@ void xnn_f32_vlrelu_ukernel__wasmsimd_minmax_x4(
     vacc = wasm_f32x4_add(vacc, wasm_f32x4_mul(vx, vslope));
 
     if (n & (2 * sizeof(float))) {
-      *((double*) y) = wasm_f64x2_extract_lane(vacc, 0);
+      *((double*) y) = wasm_f32x4_extract_lane(vacc, 0);
       vacc = wasm_v32x4_shuffle(vacc, vacc, 2, 3, 2, 3);
       y += 2;
     }

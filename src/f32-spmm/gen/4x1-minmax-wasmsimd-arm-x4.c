@@ -115,7 +115,7 @@ void xnn_f32_spmm_minmax_ukernel_4x1__wasmsimd_arm_x4(
         }
         v128_t vout01 = wasm_f32x4_min(vacc01, vmax);
         vout01 = wasm_f32x4_max(vout01, vmin);
-        *((double*) output) = wasm_f64x2_extract_lane(vout01, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vout01, 0);
 
         output = (float*restrict) ((uintptr_t) output + output_stride);
       } while (--n != 0);

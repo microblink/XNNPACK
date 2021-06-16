@@ -55,7 +55,7 @@ void xnn_f32_vrelu_ukernel__wasmsimd_x8(
     vacc = wasm_i32x4_max(vacc, vzero);
 
     if (n & (2 * sizeof(float))) {
-      *((double*) y) = wasm_f64x2_extract_lane(vacc, 0);
+      *((double*) y) = wasm_f32x4_extract_lane(vacc, 0);
       vacc = wasm_v32x4_shuffle(vacc, vacc, 2, 3, 2, 3);
       y += 2;
     }

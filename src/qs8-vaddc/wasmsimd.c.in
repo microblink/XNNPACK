@@ -71,7 +71,7 @@ void xnn_qs8_vaddc_minmax_ukernel__wasmsimd_x${BATCH_TILE}(
     $if BATCH_TILE >= 16:
       wasm_v128_store(output, vout${ABC[0:16]});
     $else:
-      *((double*) output) = wasm_f64x2_extract_lane(vout${ABC[0:8]}${ABC[0:8]}, 0);
+       *((float*) output) = wasm_f64x2_extract_lane(vout${ABC[0:8]}${ABC[0:8]}, 0);
     $for N in range(16, BATCH_TILE, 16):
       $if N + 8 < BATCH_TILE:
         wasm_v128_store(output + ${N}, vout${ABC[N:N+16]});
@@ -102,7 +102,7 @@ void xnn_qs8_vaddc_minmax_ukernel__wasmsimd_x${BATCH_TILE}(
 
       $if BATCH_TILE > 8:
         if XNN_LIKELY(n >= (8 * sizeof(int8_t))) {
-          *((double*) output) = wasm_f64x2_extract_lane(vout${ABC[0:8]}${ABC[0:8]}, 0);
+           *((float*) output) = wasm_f64x2_extract_lane(vout${ABC[0:8]}${ABC[0:8]}, 0);
           output += 8;
           n -= 8 * sizeof(int8_t);
         } else {

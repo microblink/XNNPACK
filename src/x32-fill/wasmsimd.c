@@ -40,7 +40,7 @@ void xnn_x32_fill_ukernel__wasmsimd(
     }
     if XNN_UNLIKELY(c != 0) {
       if XNN_LIKELY(c & (2 * sizeof(uint32_t))) {
-        *((double*) output) = wasm_f64x2_extract_lane(vfill, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vfill, 0);
         output += 2;
       }
       if XNN_LIKELY(c & (1 * sizeof(uint32_t))) {

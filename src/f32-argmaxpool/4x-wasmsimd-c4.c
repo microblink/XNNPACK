@@ -99,8 +99,8 @@ void xnn_f32_argmaxpool_ukernel_4x__wasmsimd_c4(
       vidx = wasm_v128_bitselect(wasm_i32x4_splat(3), vidx, vm3);
 
       if (c & 2) {
-        *((double*) output) = wasm_f64x2_extract_lane(vmax, 0);
-        *((double*) index) = wasm_f64x2_extract_lane(vidx, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vmax, 0);
+        *((double*) index) = wasm_f32x4_extract_lane(vidx, 0);
         vmax = wasm_v32x4_shuffle(vmax, vmax, 2, 3, 2, 3);
         vidx = wasm_v32x4_shuffle(vidx, vidx, 2, 3, 2, 3);
         output += 2;

@@ -108,7 +108,7 @@ void xnn_f32_ibilinear_ukernel__wasmsimd_c${CHANNEL_TILE}${"" if PIXEL_TILE == 1
       v128_t vo = wasm_f32x4_add(vt, wasm_f32x4_mul(vd, valphav));
 
       if (c & (2 * sizeof(float))) {
-        *((double*) output) = wasm_f64x2_extract_lane(vo, 0);
+         *((float*) output) = wasm_f64x2_extract_lane(vo, 0);
         vo = wasm_v32x4_shuffle(vo, vo, 2, 3, 2, 3);
         output += 2;
       }

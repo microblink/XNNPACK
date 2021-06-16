@@ -30,7 +30,7 @@ void xnn_x32_unpool_ukernel__wasmsimd(
     }
     if (c != 0) {
       if (c & 2) {
-        *((double*) o) = wasm_f64x2_extract_lane(vfill, 0);
+        *((double*) o) = wasm_f32x4_extract_lane(vfill, 0);
         o += 2;
       }
       if (c & 1) {

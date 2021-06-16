@@ -73,7 +73,7 @@ void xnn_qs8_vaddc_minmax_ukernel__wasmsimd_x24(
     voutGHIJKLMNGHIJKLMN = wasm_i8x16_min(voutGHIJKLMNGHIJKLMN, voutput_max);
 
     wasm_v128_store(output, vout0123456789ABCDEF);
-    *((double*) (output + 16)) = wasm_f64x2_extract_lane(voutGHIJKLMNGHIJKLMN, 0);
+    *((double*) (output + 16)) = wasm_f32x4_extract_lane(voutGHIJKLMNGHIJKLMN, 0);
     output += 24;
   }
   if XNN_UNLIKELY(n != 0) {
@@ -97,7 +97,7 @@ void xnn_qs8_vaddc_minmax_ukernel__wasmsimd_x24(
       vout0123456701234567 = wasm_i8x16_min(vout0123456701234567, voutput_max);
 
       if XNN_LIKELY(n >= (8 * sizeof(int8_t))) {
-        *((double*) output) = wasm_f64x2_extract_lane(vout0123456701234567, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vout0123456701234567, 0);
         output += 8;
         n -= 8 * sizeof(int8_t);
       } else {

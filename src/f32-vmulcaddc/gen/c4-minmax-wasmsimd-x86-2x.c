@@ -92,8 +92,8 @@ void xnn_f32_vmulcaddc_minmax_ukernel_c4__wasmsimd_x86_2x(
       vacc1 = wasm_v128_bitselect(vacc1, vmax, wasm_f32x4_le(vacc1, vmax));
 
       if (c & (2 * sizeof(float))) {
-        *((double*) o0) = wasm_f64x2_extract_lane(vacc0, 0);
-        *((double*) o1) = wasm_f64x2_extract_lane(vacc1, 0);
+        *((double*) o0) = wasm_f32x4_extract_lane(vacc0, 0);
+        *((double*) o1) = wasm_f32x4_extract_lane(vacc1, 0);
 
         vacc0 = wasm_v32x4_shuffle(vacc0, vacc0, 2, 3, 2, 3);
         vacc1 = wasm_v32x4_shuffle(vacc1, vacc1, 2, 3, 2, 3);

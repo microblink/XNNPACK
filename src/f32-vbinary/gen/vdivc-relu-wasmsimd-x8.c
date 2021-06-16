@@ -65,7 +65,7 @@ void xnn_f32_vdivc_relu_ukernel__wasmsimd_x8(
     vy = wasm_i32x4_max(vy, vzero);
 
     if (n & (2 * sizeof(float))) {
-      *((double*) y) = wasm_f64x2_extract_lane(vy, 0);
+      *((double*) y) = wasm_f32x4_extract_lane(vy, 0);
       vy = wasm_v32x4_shuffle(vy, vy, 2, 3, 2, 3);
       y += 2;
     }

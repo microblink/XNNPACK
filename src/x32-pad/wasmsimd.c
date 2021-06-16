@@ -39,7 +39,7 @@ void xnn_x32_pad_ukernel__wasmsimd(
         output += 4;
       }
       if (l & (2 * sizeof(uint32_t))) {
-        *((double*) output) = wasm_f64x2_extract_lane(vfill, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vfill, 0);
         output += 2;
       }
       if (l & sizeof(uint32_t)) {
@@ -61,7 +61,7 @@ void xnn_x32_pad_ukernel__wasmsimd(
       v128_t vtmp = wasm_v128_load(input);
       input = (const void*) ((uintptr_t) input + c);
       if (c & (2 * sizeof(uint32_t))) {
-        *((double*) output) = wasm_f64x2_extract_lane(vtmp, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vtmp, 0);
         output += 2;
 
         vtmp = wasm_v32x4_shuffle(vtmp, vtmp, 2, 3, 2, 3);
@@ -80,7 +80,7 @@ void xnn_x32_pad_ukernel__wasmsimd(
         output += 4;
       }
       if (r & (2 * sizeof(uint32_t))) {
-        *((double*) output) = wasm_f64x2_extract_lane(vfill, 0);
+         *((float*) output) = wasm_f32x4_extract_lane(vfill, 0);
         output += 2;
       }
       if (r & sizeof(uint32_t)) {

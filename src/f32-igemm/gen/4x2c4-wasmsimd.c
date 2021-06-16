@@ -161,13 +161,13 @@ void xnn_f32_igemm_ukernel_4x2c4__wasmsimd(
 
 
     if XNN_LIKELY(nc >= 2) {
-      *((double*) c3) = wasm_f64x2_extract_lane(vacc23x01, 1);
+      *((float*) c3) = wasm_f32x4_extract_lane(vacc23x01, 1);
       c3 = (float*) ((uintptr_t) c3 + cn_stride);
-      *((double*) c2) = wasm_f64x2_extract_lane(vacc23x01, 0);
+      *((float*) c2) = wasm_f32x4_extract_lane(vacc23x01, 0);
       c2 = (float*) ((uintptr_t) c2 + cn_stride);
-      *((double*) c1) = wasm_f64x2_extract_lane(vacc01x01, 1);
+      *((float*) c1) = wasm_f32x4_extract_lane(vacc01x01, 1);
       c1 = (float*) ((uintptr_t) c1 + cn_stride);
-      *((double*) c0) = wasm_f64x2_extract_lane(vacc01x01, 0);
+      *((float*) c0) = wasm_f32x4_extract_lane(vacc01x01, 0);
       c0 = (float*) ((uintptr_t) c0 + cn_stride);
 
       a = (const float**restrict) ((uintptr_t) a - ks);

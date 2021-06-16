@@ -290,13 +290,13 @@ void xnn_f32_dwconv2d_chw_ukernel_3x3p1__wasmsimd_x86_loadsplat_4x4(
         o0 += 4;
       } else {
         if (w & (2 * sizeof(float))) {
-          *((double*) o3) = wasm_f64x2_extract_lane(vo3, 0);
+          *((double*) o3) = wasm_f32x4_extract_lane(vo3, 0);
           o3 += 2;
-          *((double*) o2) = wasm_f64x2_extract_lane(vo2, 0);
+          *((double*) o2) = wasm_f32x4_extract_lane(vo2, 0);
           o2 += 2;
-          *((double*) o1) = wasm_f64x2_extract_lane(vo1, 0);
+          *((double*) o1) = wasm_f32x4_extract_lane(vo1, 0);
           o1 += 2;
-          *((double*) o0) = wasm_f64x2_extract_lane(vo0, 0);
+          *((double*) o0) = wasm_f32x4_extract_lane(vo0, 0);
           o0 += 2;
 
           vo0 = wasm_v32x4_shuffle(vo0, vo0, 2, 3, 0, 1);

@@ -59,7 +59,7 @@ void xnn_f32_vlrelu_ukernel__wasmsimd_bitselect_x8(
     vacc = wasm_v128_bitselect(vacc, vx, vmask);
 
     if (n & (2 * sizeof(float))) {
-      *((double*) y) = wasm_f64x2_extract_lane(vacc, 0);
+      *((double*) y) = wasm_f32x4_extract_lane(vacc, 0);
       vacc = wasm_v32x4_shuffle(vacc, vacc, 2, 3, 2, 3);
       y += 2;
     }

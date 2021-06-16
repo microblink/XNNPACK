@@ -55,7 +55,7 @@ void xnn_f32_vrndd_ukernel__wasmsimd_cvt_x4(
     v128_t vy = wasm_f32x4_sub(vrndx, vadj);
 
     if (n & (2 * sizeof(float))) {
-      *((double*) y) = wasm_f64x2_extract_lane(vy, 0);
+      *((double*) y) = wasm_f32x4_extract_lane(vy, 0);
       vy = wasm_v32x4_shuffle(vy, vy, 2, 3, 2, 3);
       y += 2;
     }

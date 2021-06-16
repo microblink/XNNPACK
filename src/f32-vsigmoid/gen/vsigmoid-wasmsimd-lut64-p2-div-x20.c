@@ -246,7 +246,7 @@ void xnn_f32_vsigmoid_ukernel__wasmsimd_lut64_p2_div_x20(
     vf = wasm_v128_bitselect(vf, wasm_f32x4_sub(vone, vf), wasm_i32x4_shr(vx, 31));
 
     if (n & (2 * sizeof(float))) {
-      *((double*) y) = wasm_f64x2_extract_lane(vf, 0);
+      *((double*) y) = wasm_f32x4_extract_lane(vf, 0);
       vf = wasm_v32x4_shuffle(vf, vf, 2, 3, 2, 3);
       y += 2;
     }

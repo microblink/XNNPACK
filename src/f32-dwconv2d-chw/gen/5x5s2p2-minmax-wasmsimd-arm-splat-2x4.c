@@ -448,8 +448,8 @@ void xnn_f32_dwconv2d_chw_ukernel_5x5s2p2__wasmsimd_arm_splat_2x4(
         wasm_v128_store(o0, vo0); o0 += 4;
       } else {
         if (w_tmp & 2) {
-          *((double*) o1) = wasm_f64x2_extract_lane(vo1, 0); o1 += 2;
-          *((double*) o0) = wasm_f64x2_extract_lane(vo0, 0); o0 += 2;
+          *((double*) o1) = wasm_f32x4_extract_lane(vo1, 0); o1 += 2;
+          *((double*) o0) = wasm_f32x4_extract_lane(vo0, 0); o0 += 2;
 
           vo0 = wasm_v32x4_shuffle(vo0, vo0, 2, 3, 0, 1);
           vo1 = wasm_v32x4_shuffle(vo1, vo1, 2, 3, 0, 1);

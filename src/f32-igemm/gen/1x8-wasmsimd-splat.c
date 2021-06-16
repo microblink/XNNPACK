@@ -127,7 +127,7 @@ void xnn_f32_igemm_ukernel_1x8__wasmsimd_splat(
         c0 += 4;
       }
       if (nc & 2) {
-        *((double*) c0) = wasm_f64x2_extract_lane(vacc0x0123, 0);
+        *((float*) c0) = wasm_f32x4_extract_lane(vacc0x0123, 0);
 
         vacc0x0123 = wasm_v32x4_shuffle(vacc0x0123, vacc0x0123, 2, 3, 2, 3);
 

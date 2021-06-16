@@ -197,7 +197,7 @@ void xnn_f32_gavgpool_minmax_ukernel_7p7x__wasmsimd_arm_c4(
     vout = wasm_f32x4_min(vout, vmax);
 
     if (channels & 2) {
-      *((double*) output) = wasm_f64x2_extract_lane(vout, 0);
+       *((float*) output) = wasm_f32x4_extract_lane(vout, 0);
       output += 2;
       vout = wasm_v32x4_shuffle(vout, vout, 2, 3, 2, 3);
     }

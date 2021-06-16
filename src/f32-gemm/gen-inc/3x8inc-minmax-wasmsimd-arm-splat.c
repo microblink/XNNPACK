@@ -197,9 +197,9 @@ void xnn_f32_gemminc_minmax_ukernel_3x8__wasmsimd_arm_splat(
         c0 += 4;
       }
       if (nc & 2) {
-        *((double*) c2) = wasm_f64x2_extract_lane(vacc2x0123, 0);
-        *((double*) c1) = wasm_f64x2_extract_lane(vacc1x0123, 0);
-        *((double*) c0) = wasm_f64x2_extract_lane(vacc0x0123, 0);
+        *((float*) c2) = wasm_f32x4_extract_lane(vacc2x0123, 0);
+        *((float*) c1) = wasm_f32x4_extract_lane(vacc1x0123, 0);
+        *((float*) c0) = wasm_f32x4_extract_lane(vacc0x0123, 0);
 
         vacc2x0123 = wasm_v32x4_shuffle(vacc2x0123, vacc2x0123, 2, 3, 2, 3);
         vacc1x0123 = wasm_v32x4_shuffle(vacc1x0123, vacc1x0123, 2, 3, 2, 3);

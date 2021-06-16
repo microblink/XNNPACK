@@ -138,7 +138,7 @@ void xnn_f32_maxpool_minmax_ukernel_9p8x__wasmsimd_arm_c4(
         v128_t vout = wasm_f32x4_max(wasm_f32x4_min(vmax, voutput_max), voutput_min);
 
         if (c & 2) {
-          *((double*) o) = wasm_f64x2_extract_lane(vout, 0);
+          *((double*) o) = wasm_f32x4_extract_lane(vout, 0);
           vout = wasm_v32x4_shuffle(vout, vout, 2, 3, 2, 3);
           o += 2;
         }
@@ -243,7 +243,7 @@ void xnn_f32_maxpool_minmax_ukernel_9p8x__wasmsimd_arm_c4(
         v128_t vout = wasm_f32x4_max(wasm_f32x4_min(vmax, voutput_max), voutput_min);
 
         if (c & 2) {
-          *((double*) o) = wasm_f64x2_extract_lane(vout, 0);
+          *((double*) o) = wasm_f32x4_extract_lane(vout, 0);
           vout = wasm_v32x4_shuffle(vout, vout, 2, 3, 2, 3);
           o += 2;
         }
