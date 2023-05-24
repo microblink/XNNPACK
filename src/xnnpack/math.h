@@ -12,6 +12,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <assert.h>
+#include <math.h>
 
 #ifdef _MSC_VER
   #include <intrin.h>
