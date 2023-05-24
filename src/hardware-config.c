@@ -46,12 +46,12 @@ static struct xnn_hardware_config hardware_config = {0};
 
 static void init_hardware_config(void) {
   #if XNN_ARCH_ARM
-    hardware_config.use_arm_v6 = cpuinfo_has_arm_v6();
-    hardware_config.use_arm_vfpv2 = cpuinfo_has_arm_vfpv2();
-    hardware_config.use_arm_vfpv3 = cpuinfo_has_arm_vfpv3();
-    hardware_config.use_arm_neon = cpuinfo_has_arm_neon();
-    hardware_config.use_arm_neon_fp16 = cpuinfo_has_arm_neon_fp16();
-    hardware_config.use_arm_neon_fma = cpuinfo_has_arm_neon_fma();
+    hardware_config.use_arm_v6 = true;//cpuinfo_has_arm_v6();
+    hardware_config.use_arm_vfpv2 = true;//cpuinfo_has_arm_vfpv2();
+    hardware_config.use_arm_vfpv3 = true;//cpuinfo_has_arm_vfpv3();
+    hardware_config.use_arm_neon = true;//cpuinfo_has_arm_neon();
+    hardware_config.use_arm_neon_fp16 = true;//cpuinfo_has_arm_neon_fp16();
+    hardware_config.use_arm_neon_fma = true;//cpuinfo_has_arm_neon_fma();
     hardware_config.use_arm_neon_v8 = cpuinfo_has_arm_neon_v8();
   #endif
 
@@ -82,9 +82,9 @@ static void init_hardware_config(void) {
   #endif
 
   #if XNN_ARCH_X86 || XNN_ARCH_X86_64
-    hardware_config.use_x86_ssse3 = cpuinfo_has_x86_ssse3();
-    hardware_config.use_x86_sse4_1 = cpuinfo_has_x86_sse4_1();
-    hardware_config.use_x86_avx = cpuinfo_has_x86_avx();
+    hardware_config.use_x86_ssse3 = true;//cpuinfo_has_x86_ssse3();
+    hardware_config.use_x86_sse4_1 = true;//cpuinfo_has_x86_sse4_1();
+    hardware_config.use_x86_avx = true;//cpuinfo_has_x86_avx();
     hardware_config.use_x86_f16c = cpuinfo_has_x86_f16c();
     hardware_config.use_x86_fma3 = cpuinfo_has_x86_fma3();
     hardware_config.use_x86_xop = cpuinfo_has_x86_xop();
@@ -173,6 +173,7 @@ const struct xnn_hardware_config* xnn_init_hardware_config() {
   #if !XNN_PLATFORM_WEB && !XNN_ARCH_RISCV && !(XNN_ARCH_ARM64 && XNN_PLATFORM_WINDOWS)
     if (!cpuinfo_initialize()) {
       xnn_log_error("failed to initialize cpuinfo");
+      XNN_UNREACHABLE;
       return NULL;
     }
   #endif  // !XNN_PLATFORM_WEB && !XNN_ARCH_RISCV && !(XNN_ARCH_ARM64 && XNN_PLATFORM_WINDOWS)
@@ -180,16 +181,19 @@ const struct xnn_hardware_config* xnn_init_hardware_config() {
     #if XNN_PLATFORM_MOBILE
       if (!cpuinfo_has_arm_neon()) {
         xnn_log_debug("unsupported hardware: ARM NEON not detected");
+      XNN_UNREACHABLE;
         return NULL;
       }
     #else
       if (!cpuinfo_has_arm_v6()) {
         xnn_log_debug("unsupported hardware: ARMv6 not detected");
+      XNN_UNREACHABLE;
         return NULL;
       }
 
       if (!cpuinfo_has_arm_vfpv2() && !cpuinfo_has_arm_vfpv3()) {
         xnn_log_debug("unsupported hardware: VFP FPU not detected");
+        XNN_UNREACHABLE;
         return NULL;
       }
     #endif
@@ -197,6 +201,7 @@ const struct xnn_hardware_config* xnn_init_hardware_config() {
   #if XNN_ARCH_X86
     if (!cpuinfo_has_x86_sse2()) {
       xnn_log_debug("unsupported hardware: SSE2 not detected");
+        XNN_UNREACHABLE;
       return NULL;
     }
   #endif  // XNN_ARCH_X86

@@ -166,5 +166,8 @@ static const char data[] =
 const char* xnn_operator_type_to_string(enum xnn_operator_type operator_type) {
   assert(operator_type >= xnn_operator_type_invalid);
   assert(operator_type <= xnn_operator_type_unpooling_nhwc_x32);
+#ifdef NDEBUG
+  XNN_UNREACHABLE;
+#endif
   return &data[offset[operator_type]];
 }
