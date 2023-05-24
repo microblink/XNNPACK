@@ -1357,18 +1357,20 @@ enum xnn_status xnn_create_convolution2d_nhwc_f32(
     }
   };
 
-  const struct xnn_dwconv_config* dwconv_config = xnn_init_f32_dwconv_config();
-  if (dwconv_config == NULL) {
-    xnn_log_error("failed to create %s operator: unsupported hardware configuration",
-                  xnn_operator_type_to_string(xnn_operator_type_convolution_nhwc_f32));
-    return xnn_status_unsupported_hardware;
-  }
-
+  const struct xnn_dwconv_config* dwconv_ukernel = NULL;
   union xnn_f32_minmax_params dwconv_params;
-  const struct xnn_dwconv_config* dwconv_ukernel =
+  if ( flags & XNN_FLAG_DEPTHWISE_CONVOLUTION ) {
+    const struct xnn_dwconv_config* dwconv_config = xnn_init_f32_dwconv_config();
+    if (dwconv_config == NULL) {
+      xnn_log_error("failed to create %s operator: unsupported hardware configuration",
+                    xnn_operator_type_to_string(xnn_operator_type_convolution_nhwc_f32));
+      return xnn_status_unsupported_hardware;
+    }
+
     find_dwconv_ukernel(kernel_height * kernel_width, dwconv_config, XNN_MAX_F32_DWCONV_UKERNELS);
-  if XNN_LIKELY(dwconv_ukernel != NULL) {
-    dwconv_ukernel->init.f32(&dwconv_params, output_min, output_max);
+    if XNN_LIKELY(dwconv_ukernel != NULL) {
+      dwconv_ukernel->init.f32(&dwconv_params, output_min, output_max);
+    }
   }
 
   const struct xnn_vmulcaddc_config* vmulcaddc_config = xnn_init_f32_vmulcaddc_config();

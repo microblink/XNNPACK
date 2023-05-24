@@ -33,5 +33,8 @@ static const char data[] =
 const char* xnn_microkernel_type_to_string(enum xnn_microkernel_type microkernel_type) {
   assert(microkernel_type >= xnn_microkernel_type_default);
   assert(microkernel_type <= xnn_microkernel_type_vmulcaddc);
+#ifdef NDEBUG
+  XNN_UNREACHABLE;
+#endif
   return &data[offset[microkernel_type]];
 }
