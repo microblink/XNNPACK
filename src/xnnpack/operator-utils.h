@@ -54,6 +54,7 @@ static inline void* packed_weights(struct xnn_operator* op) {
 }
 
 static inline bool use_weights_cache(struct xnn_operator* op) {
+  __builtin_assume( op->weights_cache == NULL );
   return op->weights_cache != NULL;
 }
 
