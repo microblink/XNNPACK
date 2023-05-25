@@ -34,7 +34,8 @@ const char* xnn_microkernel_type_to_string(enum xnn_microkernel_type microkernel
   assert(microkernel_type >= xnn_microkernel_type_default);
   assert(microkernel_type <= xnn_microkernel_type_vmulcaddc);
 #ifdef NDEBUG
-  XNN_UNREACHABLE;
-#endif
+  return "";
+#else
   return &data[offset[microkernel_type]];
+#endif
 }

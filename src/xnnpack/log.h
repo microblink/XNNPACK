@@ -110,6 +110,9 @@ XNN_LOG_ARGUMENTS_FORMAT inline static void xnn_log_error(const char* format, ..
     xnn_vlog_error(format, args);
     va_end(args);
   #endif
+#ifdef NDEBUG
+  __builtin_unreachable();
+#endif
 }
 
 XNN_LOG_ARGUMENTS_FORMAT inline static void xnn_log_fatal(const char* format, ...) {
@@ -119,5 +122,9 @@ XNN_LOG_ARGUMENTS_FORMAT inline static void xnn_log_fatal(const char* format, ..
     xnn_vlog_fatal(format, args);
     va_end(args);
   #endif
+#ifdef NDEBUG
+  __builtin_unreachable();
+#else
   abort();
+#endif
 }
