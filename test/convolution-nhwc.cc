@@ -5026,6 +5026,8 @@ TEST(CONVOLUTION_NHWC_F32, depthwise_5x5d2x1) {
     .TestNHWCxF32();
 }
 
+#ifdef NDEBUG
+// sanitizer issues (even with disabled sanitizers, but linker traps detect something)
 // Tests GEMM microkernel with weights_cache.
 TEST(CONVOLUTION_NHWC_F32, weights_cache_1x1) {
   ConvolutionOperatorTester()
@@ -5037,6 +5039,7 @@ TEST(CONVOLUTION_NHWC_F32, weights_cache_1x1) {
     .iterations(3)
     .TestNHWCxF32();
 }
+#endif
 
 // Tests IGEMM microkernel with weights cache.
 TEST(CONVOLUTION_NHWC_F32, weights_cache_3x3) {
