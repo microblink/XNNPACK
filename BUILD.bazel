@@ -48,7 +48,7 @@ ACCURACY_EVAL_DEPS = [
     ":math_stubs",
     "@FP16",
     "@cpuinfo",
-    "@pthreadpool",
+    "//:pthreadpool",
 ]
 
 MICROKERNEL_TEST_DEPS = [
@@ -76,7 +76,7 @@ OPERATOR_TEST_DEPS = [
     ":XNNPACK_test_mode",
     ":jit_test_mode",
     ":normalization_test_mode",
-    "@pthreadpool",
+    "//:pthreadpool",
     "@FP16",
 ]
 
@@ -2033,7 +2033,7 @@ xnnpack_cc_library(
     gcc_copts = xnnpack_gcc_std_copts(),
     msvc_copts = xnnpack_msvc_std_copts(),
     deps = [
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -5042,7 +5042,7 @@ xnnpack_cc_library(
         ":microkernel_type",
         ":operator_type",
         ":params",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -5099,7 +5099,7 @@ xnnpack_cc_library(
         ":post_operation",
         ":xnnpack_h",
         "@FP16",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -5143,7 +5143,7 @@ xnnpack_cc_library(
         ":post_operation_test_mode",
         ":xnnpack_h",
         "@FP16",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -5453,7 +5453,7 @@ xnnpack_cc_library(
         ":emscripten": [],
         "//conditions:default": [
             "@cpuinfo",
-            "@pthreadpool",
+            "//:pthreadpool",
         ],
     }),
 )
@@ -6528,7 +6528,7 @@ xnnpack_cc_library(
         ":XNNPACK",
         ":cache",
         "@FP16",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6540,7 +6540,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6552,7 +6552,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6564,7 +6564,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6576,7 +6576,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6588,7 +6588,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6600,7 +6600,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6612,7 +6612,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6624,7 +6624,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6636,7 +6636,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6649,7 +6649,7 @@ xnnpack_cc_library(
         ":XNNPACK",
         ":cache",
         "@FP16",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6661,7 +6661,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6673,7 +6673,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6685,7 +6685,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6698,7 +6698,7 @@ xnnpack_cc_library(
         ":XNNPACK",
         ":cache",
         "@FP16",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6710,7 +6710,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6722,7 +6722,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6734,7 +6734,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6747,7 +6747,7 @@ xnnpack_cc_library(
         ":XNNPACK",
         ":cache",
         "@FP16",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6759,7 +6759,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6772,7 +6772,7 @@ xnnpack_cc_library(
         ":XNNPACK",
         ":cache",
         ":post_operation",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6784,7 +6784,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6796,7 +6796,7 @@ xnnpack_cc_library(
     deps = [
         ":XNNPACK",
         ":cache",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -6941,7 +6941,7 @@ xnnpack_benchmark(
         ":qs8_qc8w_mobilenet_v2",
         ":qu8_mobilenet_v1",
         ":qu8_mobilenet_v2",
-        "@pthreadpool",
+        "//:pthreadpool",
     ],
 )
 
@@ -7076,7 +7076,7 @@ xnnpack_cc_library(
         ":math",
         ":math_stubs",
         "@FP16",
-        "@pthreadpool",
+        "//:pthreadpool",
         "@com_google_googletest//:gtest_main",
     ],
 )
@@ -11841,4 +11841,9 @@ bzl_library(
     name = "build_defs_bzl",
     srcs = ["build_defs.bzl"],
     visibility = ["//visibility:private"],
+)
+
+label_flag(
+    name = "pthreadpool",
+    build_setting_default = "@pthreadpool",
 )
