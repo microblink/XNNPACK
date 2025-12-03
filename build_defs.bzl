@@ -210,6 +210,9 @@ def xnnpack_cc_library(
         textual_hdrs = hdrs,
         visibility = visibility,
         testonly = testonly,
+        features = [
+            "-ubsan",
+        ],
     )
 
 def xnnpack_aggregate_library(
