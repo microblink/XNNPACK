@@ -2412,7 +2412,7 @@ xnnpack_cc_library(
         ":prefetch",
         ":tables",
         ":unaligned",
-        "@FXdiv",
+        "@fxdiv//:FXdiv",
     ],
 )
 
@@ -2434,7 +2434,7 @@ xnnpack_cc_library(
         ":prefetch",
         ":tables",
         ":unaligned",
-        "@FXdiv",
+        "@fxdiv//:FXdiv",
     ],
 )
 
@@ -2461,7 +2461,7 @@ xnnpack_cc_library(
         ":prefetch",
         ":tables",
         ":unaligned",
-        "@FXdiv",
+        "@fxdiv//:FXdiv",
     ],
 )
 
@@ -2487,7 +2487,7 @@ xnnpack_cc_library(
         ":prefetch",
         ":tables",
         ":unaligned",
-        "@FXdiv",
+        "@fxdiv//:FXdiv",
     ],
 )
 
@@ -4829,7 +4829,7 @@ xnnpack_cc_library(
         ":operator_h",
         ":xnnpack_h",
         "@FP16",
-        "@FXdiv",
+        "@fxdiv//:FXdiv",
     ],
 )
 
@@ -4848,7 +4848,7 @@ xnnpack_cc_library(
         ":math",
         ":operator_h",
         "@FP16",
-        "@FXdiv",
+        "@fxdiv//:FXdiv",
     ],
 )
 
@@ -10298,6 +10298,7 @@ xnnpack_cc_library(
     hdrs = [
         "test/convolution-test-helpers.h",
     ],
+    visibility = ["//visibility:public"],
 )
 
 xnnpack_cc_library(

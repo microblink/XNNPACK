@@ -1,0 +1,25 @@
+module(
+    name = "xnnpack",
+)
+
+bazel_dep(name = "rules_cc", version = "0.2.14")
+bazel_dep(name = "rules_license", version = "1.0.0")
+bazel_dep(name = "platforms", version = "1.0.0")
+bazel_dep(name = "bazel_skylib", version = "1.8.2")
+
+bazel_dep(name = "pthreadpool", version = "0.0.0-20250926-560c60d")
+bazel_dep(name = "fxdiv", version = "0.0.0-20201209-63058ef")
+bazel_dep(name = "cpuinfo", version = "0.0.0-20250925-877328f")
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# FP16 library, used for half-precision conversions
+http_archive(
+    name = "FP16",
+    build_file = "//third_party:FP16.BUILD",
+    sha256 = "e66e65515fa09927b348d3d584c68be4215cfe664100d01c9dbc7655a5716d70",
+    strip_prefix = "FP16-0a92994d729ff76a58f692d3028ca1b64b145d91",
+    urls = [
+        "https://github.com/Maratyszcza/FP16/archive/0a92994d729ff76a58f692d3028ca1b64b145d91.zip",
+    ],
+)
