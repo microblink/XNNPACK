@@ -15,7 +15,7 @@ def xnnpack_visibility():
 
 def xnnpack_min_size_copts():
     """Compiler flags for size-optimized builds."""
-    return ["-Os"]
+    return ["-Oz"]
 
 def xnnpack_gcc_std_copts():
     """GCC-like compiler flags to specify language standard for C sources."""
@@ -85,7 +85,7 @@ def xnnpack_cc_library(
         wasm_copts = [],
         wasmsimd_copts = [],
         wasmrelaxedsimd_copts = [],
-        optimized_copts = ["-O2"],
+        optimized_copts = ["-O3"],
         hdrs = [],
         defines = [],
         includes = [],
@@ -131,7 +131,7 @@ def xnnpack_cc_library(
       wasmrelaxedsimd_copts: The list of compiler flags to use in WebAssembly
                              Relaxed SIMD builds.
       optimized_copts: The list of compiler flags to use in optimized builds.
-                       Defaults to -O2.
+                       Defaults to -O3.
       hdrs: The list of header files published by this library to be textually
             included by sources in dependent rules.
       defines: List of predefines macros to be added to the compile line.
