@@ -139,7 +139,7 @@ def xnnpack_cc_library(
       deps: The list of other libraries to be linked.
       visibility: The list of packages that can depend on this target.
     """
-    native.cc_library(
+    cc_library(
         name = name,
         srcs = srcs + select({
             "//:aarch32": aarch32_srcs,
@@ -244,7 +244,7 @@ def xnnpack_aggregate_library(
       compatible_with: The list of additional environments this rule can be built for.
     """
 
-    native.cc_library(
+    cc_library(
         name = name,
         linkstatic = True,
         deps = generic_deps + select({
@@ -282,7 +282,7 @@ def xnnpack_unit_test(name, srcs, copts = [], mingw_copts = [], msys_copts = [],
     """
 
     if automatic:
-        native.cc_test(
+        cc_test(
             name = name,
             srcs = srcs,
             copts = xnnpack_std_cxxopts() + [
@@ -315,7 +315,7 @@ def xnnpack_unit_test(name, srcs, copts = [], mingw_copts = [], msys_copts = [],
             shard_count = shard_count,
         )
     else:
-        native.cc_binary(
+        cc_binary(
             name = name,
             srcs = srcs,
             copts = xnnpack_std_cxxopts() + [
@@ -358,7 +358,7 @@ def xnnpack_binary(name, srcs, copts = [], deps = []):
              before these user-specified flags.
       deps: The list of libraries to be linked.
     """
-    native.cc_binary(
+    cc_binary(
         name = name,
         srcs = srcs,
         copts = [
@@ -386,7 +386,7 @@ def xnnpack_benchmark(name, srcs, copts = [], deps = [], tags = []):
             library is always added as a dependency and does not need to be
             explicitly specified.
     """
-    native.cc_binary(
+    cc_binary(
         name = name,
         srcs = srcs,
         copts = xnnpack_std_cxxopts() + [
