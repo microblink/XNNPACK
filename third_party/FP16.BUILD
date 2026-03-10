@@ -1,3 +1,5 @@
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+
 # Description:
 #   C/C++ library for conversion to/from half-precision floating-point formats
 
