@@ -11667,13 +11667,14 @@ alias(
 )
 
 config_setting(
-    name = "emscripten_wasmsimd",
+    name = "emscripten_wasmsimd_enabled",
     constraint_values = [
         "@platforms//os:emscripten",
     ],
     values = {
         "features": "wasm_simd",
     },
+    visibility = ["//visibility:private"],
 )
 
 config_setting(
@@ -11684,6 +11685,37 @@ config_setting(
     values = {
         "features": "wasm_relaxed_simd",
     },
+)
+
+# A build cannot have both stamp modes, so this pair provides an always-false
+# condition for excluding relaxed SIMD from emscripten_wasmsimd below.
+config_setting(
+    name = "emscripten_wasmsimd_stamp_binary_on",
+    values = {"stamp": "1"},
+    visibility = ["//visibility:private"],
+)
+
+config_setting(
+    name = "emscripten_wasmsimd_stamp_binary_off",
+    values = {"stamp": "0"},
+    visibility = ["//visibility:private"],
+)
+
+selects.config_setting_group(
+    name = "emscripten_wasmsimd_never",
+    match_all = [
+        ":emscripten_wasmsimd_stamp_binary_on",
+        ":emscripten_wasmsimd_stamp_binary_off",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+alias(
+    name = "emscripten_wasmsimd",
+    actual = select({
+        ":emscripten_wasmrelaxedsimd": ":emscripten_wasmsimd_never",
+        "//conditions:default": ":emscripten_wasmsimd_enabled",
+    }),
 )
 
 config_setting(
